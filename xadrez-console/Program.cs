@@ -1,10 +1,13 @@
 ﻿using System;
 using tabuleiro;
-using xadrez; 
+using xadrez;
 
-namespace xadrez_console {
-    class Program {
-        static void Main(string[]args){
+namespace xadrez_console
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
 
 
             try
@@ -13,24 +16,25 @@ namespace xadrez_console {
 
                 while (!partida.terminada)
                 {
-                    try { 
-                    Console.Clear();
+                    try
+                    {
+                        Console.Clear();
                         Tela.imprimirPartida(partida);
 
-                    Console.WriteLine();
-                    Console.Write("Origem: ");
-                    Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
-                    partida.validarPosicaoDeOrigem(origem);
+                        Console.WriteLine();
+                        Console.Write("Origem: ");
+                        Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
+                        partida.validarPosicaoDeOrigem(origem);
 
-                    bool[,] posicoesPossiveis = partida.tab.peca(origem).movimentosPossiveis();
+                        bool[,] posicoesPossiveis = partida.tab.peca(origem).movimentosPossiveis();
 
-                    Console.Clear();
-                    Tela.imprimirTabuleiro(partida.tab, posicoesPossiveis);
+                        Console.Clear();
+                        Tela.imprimirTabuleiro(partida.tab, posicoesPossiveis);
 
-                    Console.WriteLine();
-                    Console.Write("Destino: ");
-                    Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
-                    partida.validarPosicaoDeDestino(origem, destino);
+                        Console.WriteLine();
+                        Console.Write("Destino: ");
+                        Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
+                        partida.validarPosicaoDeDestino(origem, destino);
 
                         partida.realizaJogada(origem, destino);
                     }
@@ -40,16 +44,18 @@ namespace xadrez_console {
                         Console.ReadLine();
                     }
                 }
+                Console.Clear();
+                Tela.imprimirPartida(partida);
             }
 
             catch (TabuleiroException e)
             {
                 Console.WriteLine(e.Message);
             }
-            
-            
 
-            
+
+
+
             Console.ReadLine();
         }
     }
